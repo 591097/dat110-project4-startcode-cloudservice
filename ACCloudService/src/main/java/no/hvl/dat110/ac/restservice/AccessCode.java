@@ -16,6 +16,11 @@ public class AccessCode {
 		this.accesscode = accesscode;
 	}
 	
+	public String toString() {
+		return "[ " + accesscode[0] + " " + accesscode[1] + " ]";
+	}
+	
+	
 	
 
 }
