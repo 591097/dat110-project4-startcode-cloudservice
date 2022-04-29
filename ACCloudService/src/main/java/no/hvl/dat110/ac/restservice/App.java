@@ -5,6 +5,7 @@ import static spark.Spark.get;
 import static spark.Spark.port;
 import static spark.Spark.post;
 import static spark.Spark.put;
+import static spark.Spark.delete;
 
 import com.google.gson.Gson;
 
@@ -60,23 +61,17 @@ public class App {
 		get("/accessdevice/log/", (req, res) -> {
 			Gson gson = new Gson();
 
-			Integer id = gson.fromJson(req.params().get(0), Integer.class);
-			if (id != null) {
-				return gson.toJson(accesslog.get(id));
-			} else {
-				return accesslog.toJson();
-			}
+		
+			return accesslog.toJson();
 			
 		});
 			
 		// Hent logg-en til et spesifikk id
-		get("/accessdevice/log/{id}", (req, res) -> {
+		get("/accessdevice/log/:id", (req, res) -> {
 			
 			//Henter id
 			Gson gson = new Gson();
-			Integer id = gson.fromJson(req.params().get(0), Integer.class);
-			
-			//Bygger opp svar
+			Integer id = Integer.parseInt(req.params(":id"));
 			
 			return gson.toJson(accesslog.get(id));
 			
@@ -99,13 +94,13 @@ public class App {
 			return gson.toJson(accesscode);
 		});
 		
-		// Slett log
-//		delete("/accessdevice/log/", (req, res) -> {
-//			accesslog.clear();
-//			
-//			return accesslog.toJson();
-//					
-//		});
+		//Slett log
+		delete("/accessdevice/log", (req, res) -> {
+			accesslog.clear();
+			
+			return accesslog.toJson();
+					
+		});
     }
     
 }

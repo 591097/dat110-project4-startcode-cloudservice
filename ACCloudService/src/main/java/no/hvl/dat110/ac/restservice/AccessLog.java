@@ -36,6 +36,7 @@ public class AccessLog {
 	
 	// TODO: clear the access entry log
 	public void clear() {
+		cid = new AtomicInteger(0);
 		log.clear();
 	}
 	
