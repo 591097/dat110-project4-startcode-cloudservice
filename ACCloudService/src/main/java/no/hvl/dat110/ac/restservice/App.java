@@ -60,7 +60,6 @@ public class App {
 		// Hent logg-en
 		get("/accessdevice/log/", (req, res) -> {
 			Gson gson = new Gson();
-
 		
 			return accesslog.toJson();
 			
